@@ -1,0 +1,181 @@
+# 
+# Copyright 2022 Yasushi Ohsugi 
+#
+# PySIの起動方法と入出力ファイル、出力結果の確認方法について
+#
+
+
+【はじめに】
+
+
+ここでは、PySIを実行するためのpython環境と起動方法を説明します。
+
+起動方法の説明の前に、PySIが生成したPSI計画の結果サンプルを先に確認して、
+出力イメージを理解することで、本処理の全体の流れが理解しやすくなると思います。
+
+PySIパッケージの中にある下記4つのexcel monitorファイルを開き、
+タブ名"PySI moniter"に入るとPSI計画の計算結果がグラフ表示されているので、
+PSI計画の状態を確認できます。
+
+4つのexcel monitorファイルは、PSI計画の評価指標(エンジン・フラグ)の違いで
+利益優先、売上優先など生成されたPSI計画状態の違いを確認できます。
+
+ここで、"plan_engine"と"reward_sw"はPSI計画のエンジン・フラグで、
+計画プロファイル"PySI_Profile_std.csv"の中で指定しています。
+
+1) "PySI_monitor_profit.xlsx"         # plan_engine= ML reward_sw= profit
+2) "PySI_monitor_revenue.xlsx"        # plan_engine= ML reward_sw= revenue
+3) "PySI_monitor_profit_ratio.xlsx"   # plan_engine= ML reward_sw= profit_ratio
+4) "PySI_monitor_fixed_sequence.xlsx" # plan_engine= FS
+
+
+また、下記のgifファイルを開くとPSI計画の処理プロセス、ロット積み上げの様子を
+animation表示します。
+ここでは、plan_engine=MLとreward_sw=profitを指定した結果をanimationしています。
+
+※利益優先のPSI計画のため、供給不足のロット積み上げの様子が不自然に見えますが、
+　計画全体の利益は最大化しています。
+
+1)  "PSI_Plan_animation_profit.gif"
+
+
+【前提】
+
+0. pythonの利用環境を整備する。
+
+筆者の環境は、windows11上にanacondaをインストールして、
+anaconda promptからpathを通して、pythonを利用しています。
+
+pathを通すサンプルのバッチ・ファイルは"set_path_sample.bat"を参照ください。
+
+pythonと関連モジュールのバージョン一覧は、下記ファイルのとおりです。
+
+"pip_list.log"
+"conda_list.log"
+
+なお、pipとcondaは、どちらでも同一のpython環境を生成するという理解ですが、
+pipとcondaを混ぜて使うとpython環境が壊れてしまう可能性があるという理解です。
+
+python環境の各種モジュールの不整合など、必要に応じて、
+利用しているpython環境が、pipコマンドで作られたのか、condaコマンドか確認の上、
+関連モジュールのバージョンをご確認ください。
+
+
+【PySIの起動方法】
+
+1. pythonを利用できるwindowプロンプトから、
+   PySIパッケージ中のmainモジュール"PySI_main_V0R1_070.py"を起動する。
+
+C:\Users\xxxxxxxx\PySI_V0R1_070P>python PySI_main_V0R1_070.py
+
+
+<<< 入力ファイルの読み込み >>>
+
+下記の2つのcsvファイルが読み込まれる。
+
+"PySI_Profile_std.csv"  PSI計画の各種パラメータ定義ファイル
+"PySI_data_std_IO.csv"  PSI計画の入力・出力の兼用ファイル
+
+
+<<< PySIの計算処理が走る >>>
+
+episode=20がセットしてあり、マシン性能に依存して処理には数秒～数分かかる。
+
+
+<<< 機械学習の結果episodeログのグラフ表示 >>>
+
+Q学習でepisode=20回を実行して、評価値(reward)のログをグラフが表示される。
+
+
+【PySIの終了操作】
+
+2. episode logグラフを内容確認し、グラフ表示ウィンドウを終了(右上のX印)する。
+
+
+<<< 出力ファイルの書き込み >>>
+
+グラフ表示を終了すると、"PySI_data_std_IO.csv"にPSI計画の計算結果が出力される。
+
+
+【excelでPSI計画結果を確認】
+
+3. 下記の3つのファイルをexcelで開く。
+
+2つの入力csvファイル
+    1)  "PySI_Profile_std.csv"  PSI計画の各種パラメータ定義ファイル
+    2)  "PySI_data_std_IO.csv"  PSI計画の入力・出力の兼用ファイル
+
+表示用のexcel monitorファイル
+    3)  "PySI_monitor.xlsx"    PSI計画の計算結果グラフ表示用ファイル
+
+excel monitorファイルのタブ名"PySI moniter"に入ると
+PSI計画の計算結果がグラフ表示されているので、PSI計画の状態が確認できる。
+
+
+以上が、PySIの起動と出力の確認方法です。
+
+
+なお、PySI計画結果からanimation用のgifファイルを生成する方法は以下のとおりです。
+【PSI計画のanimation用gifファイルの生成方法】
+
+1. pythonを利用できるwindowプロンプトから、
+   PySIパッケージ中のgif生成モジュール"PySI_animation.py"を起動する。
+
+(base) C:\Users\xxxxxxxx\PySI_V0R1_070P>python PySI_animation.py
+
+gifファイルの生成には数分かかりますが、
+pythonのanimation関数の特性から、終了処理がうまく定義できず、
+animation処理がloopしてしまうため、
+windowsプロンプトから、"ctrl + C"で強制終了してください。
+
+※下記の【loop終了のタイミングについて】参照
+※きれいに終了する方法を教えていただけると幸いです。
+
+
+2. 生成されたanimation用のgifファイル"PSI_Plan_animation.gif"の確認
+
+PSI計画の一回のloopが終了したタイミングで、
+強制終了すると、"PSI_Plan_animation.gif"が生成されます。
+
+このgifファイルを開くとPSI計画のanimationを確認できます。
+gifファイルなので、PowerPointやWEBサイトに張り付けるとanimationが動きます。
+
+
+【loop終了のタイミングについて】
+
+このanimationは累積グラフを生成しており、
+累積していく途中経過が以下のダンプ・イメージのとおり、
+windowsプロンプトに表示され、確認できます。
+
+下のダンプイメージの例では、
+需要demanの累計リスト"dy.values"のリストの最後の要素の値"6526"が累積のmaxで、
+animationが進むにつれて、
+
+供給supplyの累計リスト"sy.values"のリストの最後の要素の値、ここでは"53406"が
+徐々にmaxに近づいていきます。
+
+animation loopの一回の処理が終わると、
+供給supplyのリストの最後の要素の値が、max値から"0"クリアされて
+ロットの積み上げが再開する様子がわかります。
+
+したがって、この一回のloop終了のタイミングで強制終了するのが良いと思います。
+
+
+sy.values [   0    0  180  240  330  540  600  600  660  810  840  930  930 1110
+ 1200 1230 1350 1350 1470 1470 1500 1530 1620 1800 2040 2310 2580 3000
+ 3000 3000 3030 3090 3150 3150 3210 3240 3690 4260 4500 4890 5340 5340
+ 5340 5340 5340 5340 5340 5340 5340 5340 5340 5340 5340]
+dy.values [   0    2   52   82  112  142  205  268  331  394  474  554  634  714
+  794  919 1044 1169 1294 1444 1594 1744 1894 2034 2174 2314 2454 2594
+ 2817 3040 3263 3486 3736 3986 4236 4486 4666 4846 5026 5206 5386 5561
+ 5736 5911 6086 6186 6286 6386 6486 6496 6506 6516 6526]
+QObject::~QObject: Timers cannot be stopped from another thread
+^C
+
+(base) C:\Users\xxxxxxxx\PySI_V0R1_070P>
+
+以上、animation用のgifファイル生成方法の説明です。
+
+
+end of text
+
