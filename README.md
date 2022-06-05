@@ -40,13 +40,15 @@ PySIの機能詳細については、github上に別途、説明資料をupload�
 ご興味のある方はそちらもご一読ください。
 
 <はてなプログ>
-
 在庫管理におけるコスト評価と機械学習機能を持つPSI計画(定期発注方式)について - osuosu1123’s blog (hatenablog.com)
+
 PSI計画に機械学習の機能を組み込むための考え方 (ロット積上げPSI計画:Lot Loading PSI) - osuosu1123’s blog (hatenablog.com)
+
 PSI計画のコスト評価方法について - osuosu1123’s blog (hatenablog.com)
 
 
 <note>
+  
 在庫管理におけるコスト評価と機械学習機能を持つPSI計画(定期発注方式)について｜Yasushi　Ohsugi｜note
   
 PSI計画に機械学習の機能を組み込むための考え方 (ロット積上げPSI計画:Lot Loading PSI)｜Yasushi　Ohsugi｜note
