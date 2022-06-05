@@ -36,25 +36,39 @@ PySIで作成した在庫発注計画のアニメーションを見ていただ�
 なお、将来的な取り組み仮説としては、PySI計画の機能を拡張し、グローバル・サプライチェーン上の各事業単位の間を共通計画単位で連携することにより、統合計画機能を実装することができるとともに、グローバル・オペレーション全体の利益・コスト最適化計画を実行することで、コスト競争力の強化を図ることができると思います。
 
 PySIの機能詳細については、github上に別途、説明資料をuploadしていきたいと思いますが、
-既に他のSNSサイト、下記URLのnoteの記事、はてなブログの日記 ( 内容は同じです ) にも「ロット積み上げ方式のPSI計画」といったタイトルで紹介記事を掲載しておりますので、
-ご興味のある方はそちらもご一読ください。
+既に他のSNSサイト、下記URLのnoteの記事、はてなブログの日記にも「ロット積み上げ方式のPSI計画」といったタイトルで紹介記事を掲載しておりますので、
+ご興味のある方はそちらもご一読いただけると幸いです。
 
-【はてなプログ】
+なお、下記のURLでは複数の事業所間を連携する、サプライチェーン連携の簡易デモをご紹介しています。
+今回のPSI計画では、一つの事業所を表現していますが、出力ファイルとして共通計画単位common plaaining unitのcsvファイルが生成されるので、
+サプライチェーンの最終需要側の事業所からマザープラントに向かって順に、PySIで供給(=需要)の相互データを生成していけば、
+最終的にマザープラント側の需要に集約することができるので、マザープラントのPSI計画を作成することができるという検証になります。
+
+サプライチェーンを繋ぐPSI計画の簡易デモ　(２階層のサプライチェーン計画)｜Yasushi　Ohsugi｜note
+https://note.com/osuosu1123/n/n0d58abd2b63c
+
+
+【はてなブログ】
 
 在庫管理におけるコスト評価と機械学習機能を持つPSI計画(定期発注方式)について - osuosu1123’s blog (hatenablog.com)
+https://osuosu1123.hatenablog.com/entry/2022/02/06/170022
 
 PSI計画に機械学習の機能を組み込むための考え方 (ロット積上げPSI計画:Lot Loading PSI) - osuosu1123’s blog (hatenablog.com)
+https://osuosu1123.hatenablog.com/entry/2022/02/06/174242
 
 PSI計画のコスト評価方法について - osuosu1123’s blog (hatenablog.com)
-
+https://osuosu1123.hatenablog.com/entry/2022/02/06/174928
 
 【note】
  
 在庫管理におけるコスト評価と機械学習機能を持つPSI計画(定期発注方式)について｜Yasushi　Ohsugi｜note
+https://note.com/osuosu1123/n/n05a733329bf9  
   
 PSI計画に機械学習の機能を組み込むための考え方 (ロット積上げPSI計画:Lot Loading PSI)｜Yasushi　Ohsugi｜note
+https://note.com/osuosu1123/n/n6c8c874fefc6
   
 PSI計画のコスト評価方法について｜Yasushi　Ohsugi｜note
+https://note.com/osuosu1123/n/nfd9f66a6b9f5
   
 
 
