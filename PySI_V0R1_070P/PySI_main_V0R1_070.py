@@ -5,7 +5,7 @@
 #            Copyright (C) 2021 Yasushi Ohsugi
 #            Copyright (C) 2022 Yasushi Ohsugi
 #
-#            license follows GPL V3
+#            license follows MIT license
 
 import numpy as np
 import matplotlib.pyplot as plt
