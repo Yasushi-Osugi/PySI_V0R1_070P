@@ -5,17 +5,23 @@ WOMの特徴は以下のとおりです。
 1.メモリ上に展開したサプライチェーン・モデルを高速処理するLot based PSI planning機能
 
 1)End2End Supply Chain Model定義
+
 Inbound:素材加工〜部品生産〜最終製品生産
+
 Outbiund:製品出荷〜流通〜最終消費
 
 2)最終消費を起点とするDemand Anchored Lots
 
 3)Planning Engineの組合せ
+
 Demand AllocationとSupply Simulation
+
 PushとPull
 
 4)最適化モデルの適用領域の定義と実装
+
 Outbound最適化:生産配分(優先供給)と利益最大
+
 Inbound最適化:ボトルネック解消とコスト最小
 
 2.経営評価指標KPIの拡張
