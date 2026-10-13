@@ -39,7 +39,7 @@ Inbound最適化:ボトルネック解消とコスト最小
 https://note.com/osuosu1123/n/n09f7b4fd3b91?sub_rt=share_b
 
 【最新のWOM資料:github】
-https://note.com/osuosu1123/n/n225c3abf986e?sub_rt=share_b
+https://github.com/Yasushi-Osugi/wom_development_composite_node
 
 ーーーーーー
 
